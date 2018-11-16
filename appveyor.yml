@@ -108,8 +108,7 @@ build_script:
 - cd %ROOT_DIRECTORY%
 - mkdir build && cd build
 - if defined cmake (
-  dir /s /b c:\Libraries\boost_1_63_0\lib64-msvc-14.0 &&
-  dir /s /b c:\OpenSSL-Win64\lib &&
+  dir /s /b c:\OpenSSL-Win64 &&
   set "PATH=c:\Python27-x64;%PATH%" &&
   cmake -DCMAKE_CXX_STANDARD=11 -Dbuild_tests=ON -Dbuild_examples=ON -Dbuild_tools=ON -Dpython-bindings=%python% -Dboost-python-module-name="python" -Dskip-python-runtime-test=true -DPython_ADDITIONAL_VERSIONS="2.7" -G "Visual Studio 14 2015 Win64" .. &&
   cmake --build . --config Release
@@ -130,7 +129,7 @@ test_script:
 
 - cd %ROOT_DIRECTORY%\build
 - if defined cmake (
-  set "PATH=%ROOT_DIRECTORY%\build\Release;%PATH%" &&
+  set "PATH=%ROOT_DIRECTORY%\build\Release;c:\Libraries\boost_1_63_0\lib64-msvc-14.0;%PATH%" &&
   appveyor-retry ctest --output-on-failure
   )
 
