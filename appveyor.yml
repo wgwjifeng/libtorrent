@@ -128,8 +128,8 @@ test_script:
 
 - cd %ROOT_DIRECTORY%\build
 - if defined cmake (
-  dir /s /b &&
-  set "PATH=.\Release;%PATH%" &&
+  dir /s /b build &&
+  set "PATH=.\build\Release;%PATH%" &&
   appveyor-retry ctest --output-on-failure
   )
 
